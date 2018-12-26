@@ -42,28 +42,28 @@ class RankingModel(CsvModel):
             for row in reader:
                 self.data[row[RANKING_COLUMN_NAME]] = int(
                         row[RANKING_COLUMN_COUNT])
-        return self.data
+                return self.data
 
 
     def save(self):
-        with open(self.csv_file, 'w+') as csv_file
+        with open(self.csv_file, 'w+') as csv_file:
             writer = csv.DictWriter(csv_file, fieldnames=self.column)
             writer.writeheader()
 
             for name, count in self.data.items():
                 writer.writerow({
-                    RANKING_COLUMN_NAME: name
+                    RANKING_COLUMN_NAME: name,
                     RANKING_COLUMN_COUNT: count
-                })
+                    })
 
-    def get_most_popular(self, not_list=None):
-        if not_list is None:
-            not_list = []
+                def get_most_popular(self, not_list=None):
+                    if not_list is None:
+                        not_list = []
 
         if not self.data:
             return None
-        sorted_data = sorted(seld.data, key=self.data.get, reverse=True)
-        
+        sorted_data = sorted(self.data, key=self.data.get, reverse=True)
+
         for name in sorted_data:
             if name in not_list:
                 continue
