@@ -44,7 +44,6 @@ class RankingModel(CsvModel):
                         row[RANKING_COLUMN_COUNT])
                 return self.data
 
-
     def save(self):
         with open(self.csv_file, 'w+') as csv_file:
             writer = csv.DictWriter(csv_file, fieldnames=self.column)
